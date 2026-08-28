@@ -1,0 +1,94 @@
+/*
+ * Banner block
+ *
+ * Default background = blue. Author picks a variant on the block name to swap
+ * the palette:  Banner (red)  ->  .banner.red
+ * Variants only override the --banner-bg (and, where useful, --banner-fg)
+ * custom properties so the layout stays identical across colors.
+ */
+
+.banner {
+  --banner-bg: #0057ff;
+  --banner-fg: #fff;
+
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: 40px 24px;
+  background-color: var(--banner-bg);
+  color: var(--banner-fg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* palette variants */
+.banner.red {
+  --banner-bg: #c8102e;
+}
+
+.banner.green {
+  --banner-bg: #087443;
+}
+
+.banner.dark {
+  --banner-bg: #12484e;
+}
+
+.banner.light {
+  --banner-bg: #f8f8f8;
+  --banner-fg: #12484e;
+}
+
+/* background image layer */
+.banner .banner-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.banner .banner-bg picture,
+.banner .banner-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* let the background color read through for legibility */
+.banner .banner-bg img {
+  opacity: 0.55;
+}
+
+/* foreground content */
+.banner .banner-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.banner .banner-content :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  color: inherit;
+}
+
+.banner .banner-content p {
+  margin: 12px 0 0;
+  color: inherit;
+}
+
+/* tablet + desktop */
+@media (width >= 600px) {
+  .banner {
+    min-height: 400px;
+    padding: 56px 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .banner {
+    min-height: 480px;
+    padding: 64px 32px;
+  }
+}
