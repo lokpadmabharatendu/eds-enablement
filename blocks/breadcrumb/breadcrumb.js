@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata } from '../../scripts/aem.js';
 
 /**
  *
@@ -9,8 +9,8 @@ export default function decorate($block) {
   const $ul = document.createElement('ul');
   $block.append($ul);
   const trail = [{
-    text: 'Adventures',
-    link: '/adventures',
+    text: 'Home',
+    link: '/',
   }, {
     text: title,
   }];
