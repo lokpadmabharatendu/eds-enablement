@@ -40,6 +40,11 @@
   --banner-fg: #12484e;
 }
 
+.banner.light-grey {
+  --banner-bg: #e5e5e5;
+  --banner-fg: #12484e;
+}
+
 /* background image layer */
 .banner .banner-bg {
   position: absolute;
