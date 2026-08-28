@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
 
 /**
  *
