@@ -38,6 +38,16 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  /* status colors (info / warning / error / success) */
+  --color-info: #0b5cad;
+  --color-info-background: #e6f0fb;
+  --color-warning: #8a6d3b;
+  --color-warning-background: #fcf3d9;
+  --color-error: #a12626;
+  --color-error-background: #fbe6e6;
+  --color-success: #1f6d3a;
+  --color-success-background: #e4f4e9;
 }
 
 /* fallback fonts */

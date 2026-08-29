@@ -1,0 +1,65 @@
+/*
+ * Note block — inline callouts.
+ *
+ * Default (no variant) = info. Variants: warning, error, success.
+ * Modifier variants: accent-border, no-icon (stackable).
+ * Author picks these via the block name, e.g. `Note (warning, accent-border)`.
+ */
+
+.note {
+  --note-color: var(--color-info);
+  --note-bg: var(--color-info-background);
+
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 8px;
+  background-color: var(--note-bg);
+  color: var(--note-color);
+}
+
+.note .icon {
+  flex-shrink: 0;
+  width: var(--body-font-size-m);
+  height: var(--body-font-size-m);
+  padding-top: 4px;
+}
+
+.note .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.note p {
+  margin: 0;
+}
+
+.note p.note-heading {
+  font-weight: 600;
+}
+
+/* variants */
+.note.warning {
+  --note-color: var(--color-warning);
+  --note-bg: var(--color-warning-background);
+}
+
+.note.error {
+  --note-color: var(--color-error);
+  --note-bg: var(--color-error-background);
+}
+
+.note.success {
+  --note-color: var(--color-success);
+  --note-bg: var(--color-success-background);
+}
+
+/* modifier variants — stack with any color variant */
+.note.accent-border {
+  border-left: 6px solid var(--note-color);
+}
+
+.note.no-icon .icon {
+  display: none;
+}
