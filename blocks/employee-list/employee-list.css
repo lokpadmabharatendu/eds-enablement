@@ -1,0 +1,104 @@
+/* Employee List Block */
+
+.employee-list {
+  margin: 24px 0;
+}
+
+/* Column header row — hidden on mobile, shown on desktop */
+.employee-list .employee-list-header {
+  display: none;
+}
+
+.employee-list .employee-list-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Mobile: card layout with labels */
+.employee-list .employee-list-item {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 12px;
+  row-gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--dark-color, #ccc);
+  border-radius: 8px;
+  background: var(--background-color, #fff);
+}
+
+.employee-list .employee-list-item > div {
+  display: contents;
+}
+
+.employee-list .employee-list-item > div::before {
+  content: attr(data-label);
+  font-weight: 700;
+  color: var(--text-color, #333);
+}
+
+.employee-list .employee-list-name {
+  font-size: var(--body-font-size-m, 1rem);
+}
+
+.employee-list .employee-list-load-more {
+  display: block;
+  margin: 24px auto 0;
+  padding: 10px 24px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--background-color, #fff);
+  background: var(--link-color, #035fe6);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.employee-list .employee-list-load-more:hover,
+.employee-list .employee-list-load-more:focus {
+  background: var(--link-hover-color, #136ff6);
+  outline: none;
+}
+
+.employee-list .employee-list-error {
+  color: #a00;
+  text-align: center;
+  padding: 16px;
+}
+
+/* Tablet and up: table-like grid rows */
+@media (min-width: 600px) {
+  .employee-list .employee-list-header,
+  .employee-list .employee-list-item {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr;
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  .employee-list .employee-list-header {
+    padding: 12px 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--body-font-size-s, 0.875rem);
+    color: var(--text-color, #333);
+    border-bottom: 2px solid var(--dark-color, #ccc);
+    background: transparent;
+  }
+
+  .employee-list .employee-list-item {
+    padding: 12px 16px;
+  }
+
+  .employee-list .employee-list-item > div {
+    display: block;
+  }
+
+  .employee-list .employee-list-item > div::before {
+    content: none;
+  }
+}
