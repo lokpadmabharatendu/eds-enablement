@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-article",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd-trendsetters.site/about-us",
+    "originPage": "about-us case-study article intro",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "article-intro",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image | breadcrumb + heading + author/date meta",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "article or case-study intros with lead image + title + byline",
+      "two-column media/text layouts with metadata"
+    ],
+    "notSuitableFor": [
+      "CTA-heavy hero intros",
+      "image galleries"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about-us"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}
