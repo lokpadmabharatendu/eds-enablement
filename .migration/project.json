@@ -1,0 +1,9 @@
+{
+  "sites": {
+    "eds-enablement": {
+      "previewOrg": "lokpadmabharatendu",
+      "previewSite": "eds-enablement",
+      "contentHostUrl": "https://content.da.live/lokpadmabharatendu/eds-enablement/"
+    }
+  }
+}
