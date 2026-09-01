@@ -1,0 +1,75 @@
+/*
+ * Banner CTA block (banner variant)
+ *
+ * Full-bleed closing call-to-action: a background photo with a dark overlay and
+ * centered foreground content (heading, paragraph, button). Derived from the
+ * banner block, defaulting to a dark scheme for legibility over imagery.
+ */
+
+.banner-cta {
+  --banner-cta-bg: #12484e;
+  --banner-cta-fg: #fff;
+
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: 40px 24px;
+  background-color: var(--banner-cta-bg);
+  color: var(--banner-cta-fg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* background image layer */
+.banner-cta .banner-cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.banner-cta .banner-cta-bg picture,
+.banner-cta .banner-cta-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark overlay so foreground content stays legible */
+.banner-cta .banner-cta-bg img {
+  opacity: 0.55;
+}
+
+/* foreground content */
+.banner-cta .banner-cta-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.banner-cta .banner-cta-content :is(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  color: inherit;
+}
+
+.banner-cta .banner-cta-content p {
+  margin: 12px 0 0;
+  color: inherit;
+}
+
+/* tablet + desktop */
+@media (width >= 600px) {
+  .banner-cta {
+    min-height: 400px;
+    padding: 56px 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .banner-cta {
+    min-height: 480px;
+    padding: 64px 32px;
+  }
+}

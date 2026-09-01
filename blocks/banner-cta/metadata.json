@@ -1,0 +1,37 @@
+{
+  "variantName": "banner-cta",
+  "baseBlock": "banner",
+  "version": "1.0.0",
+  "created": "2026-09-01T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd-trendsetters.site/about-us",
+    "originPage": "about-us closing CTA banner",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "cta-banner",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background image | heading + paragraph + 1 CTA (overlaid, centered)",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "full-bleed closing CTA banners with background photo",
+      "promotional hero-style banners over imagery"
+    ],
+    "notSuitableFor": [
+      "plain solid-color banners without imagery",
+      "multi-column content layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/about-us"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-01T00:00:00.000Z"
+  }
+}
