@@ -1,13 +1,15 @@
 /*
  * Banner CTA block (banner-cta variant)
  *
- * Full-bleed closing call-to-action: a solid black band with left-aligned
- * white content (large uppercase heading, body paragraph, white pill button)
- * and generous vertical padding. Values extracted from the source computed
- * styles on https://wknd-trendsetters.site/about-us.
+ * Full-bleed closing call-to-action rendered as a rounded photo card: a
+ * background image fills the card, a bottom-up dark gradient overlay sits on
+ * top, and white copy (large uppercase heading, body paragraph, white pill
+ * button) is anchored to the lower-left. The card sits inside a black,
+ * full-width section band. Values extracted from the source computed styles on
+ * https://wknd-trendsetters.site/.
  */
 
-/* full-bleed: let the black band span the viewport width */
+/* full-bleed black band: let the section span the viewport width */
 .banner-cta-wrapper {
   max-width: 100% !important;
   padding: 0 !important;
@@ -15,20 +17,55 @@
 
 .banner-cta {
   background-color: var(--dark-color);
-  color: var(--background-color);
   padding: 64px 0;
 }
 
-/* content is centered in the 1200px grid, but the copy column stays left-aligned */
-.banner-cta .banner-cta-content {
+/* rounded photo card, content aligned to the bottom */
+.banner-cta .banner-cta-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
   max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 0 24px;
-  text-align: left;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 420px;
 }
 
-.banner-cta .banner-cta-content > * {
+/* background image fills the card */
+.banner-cta .banner-cta-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.banner-cta .banner-cta-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-cta .banner-cta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* bottom-up dark gradient so the copy stays legible */
+.banner-cta .banner-cta-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: linear-gradient(to top, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 0%) 60%);
+}
+
+/* copy sits above image + overlay */
+.banner-cta .banner-cta-content {
+  position: relative;
+  z-index: 2;
   max-width: 672px;
+  padding: 32px;
+  color: var(--background-color);
 }
 
 .banner-cta .banner-cta-content h1,
@@ -46,9 +83,9 @@
   color: inherit;
 }
 
-/* CTA: white pill with black label on the dark band */
+/* CTA: white pill with black label */
 .banner-cta .banner-cta-content .button-container {
-  margin: 32px 0 0;
+  margin: 24px 0 0;
 }
 
 .banner-cta .banner-cta-content a.button:any-link {
@@ -69,7 +106,11 @@
     padding: 128px 0;
   }
 
+  .banner-cta .banner-cta-card {
+    min-height: 559px;
+  }
+
   .banner-cta .banner-cta-content {
-    padding: 0 32px;
+    padding: 64px;
   }
 }

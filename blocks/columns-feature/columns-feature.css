@@ -2,13 +2,14 @@
 
 /* Values extracted from https://wknd-trendsetters.site/fashion-trends-young-adults-casual-sport */
 
+/* row: stacked on mobile, side-by-side on desktop */
 .columns-feature > div {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* image column ordering (image first on mobile) */
+/* image cell first on mobile (matches source stacking order) */
 .columns-feature > div > div {
   order: 1;
 }
@@ -17,6 +18,7 @@
   order: 0;
 }
 
+/* image: rounded, 3:2, cover */
 .columns-feature img {
   display: block;
   width: 100%;
@@ -28,21 +30,51 @@
 /* heading */
 .columns-feature h2 {
   margin: 0;
-  font-size: var(--heading-font-size-xl);
-  line-height: 1.1;
+  font-size: var(--heading-font-size-xl); /* 40px desktop */
+  line-height: 1.1; /* source 44/40 */
   letter-spacing: normal;
 }
 
-/* lead paragraph */
+/* paragraphs (lead) */
 .columns-feature > div > div > p {
   margin: 16px 0 0;
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-size: var(--body-font-size-m); /* 18px */
+  line-height: 1.6; /* source 28.8/18 */
+  color: rgb(64 64 64);
 }
 
-/* CTA button group spacing (buttons inherit global a.button styling) */
-.columns-feature .button-group {
-  margin-top: 24px;
+/*
+ * CTA: authored as a plain link (no bold/em), so decorateButtons() does NOT
+ * add .button. Style the link directly as the source's black pill button.
+ * The link sits alone inside its own paragraph.
+ */
+.columns-feature > div > div > p:last-child {
+  margin-top: 32px;
+}
+
+.columns-feature > div > div > p > a:only-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--text-color);
+  border-radius: 9999px;
+  padding: 12px 24px;
+  background-color: var(--text-color);
+  color: var(--background-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.columns-feature > div > div > p > a:only-child:hover,
+.columns-feature > div > div > p > a:only-child:focus-visible {
+  border-color: var(--link-hover-color);
+  background-color: var(--link-hover-color);
+  color: var(--background-color);
+  text-decoration: none;
 }
 
 @media (width >= 900px) {

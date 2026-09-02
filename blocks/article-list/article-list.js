@@ -151,7 +151,7 @@ export default async function decorate(block) {
   const pageSize = Number.parseInt(config['page-size'] ?? config.pagesize, 10);
   const paging = Number.isFinite(pageSize) ? pageSize : DEFAULT_PAGE_SIZE;
   const sortMode = (config.sort || 'date-desc').toLowerCase();
-  const filter = config.filter;
+  const { filter } = config;
   const excludes = [
     ...DEFAULT_EXCLUDES,
     ...(config.exclude ? config.exclude.split(',').map((s) => s.trim()).filter(Boolean) : []),
