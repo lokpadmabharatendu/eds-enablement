@@ -30,8 +30,14 @@
     ]
   },
   "usage": {
-    "pagesUsing": ["/about-us"],
-    "reuseCount": 1,
-    "lastUsed": "2026-09-01T00:00:00.000Z"
+    "pagesUsing": [
+      "/about-us",
+      "/index",
+      "/blog",
+      "/faq",
+      "/fashion-trends-young-adults-casual-sport"
+    ],
+    "reuseCount": 5,
+    "lastUsed": "2026-09-02T12:17:00.000Z"
   }
 }

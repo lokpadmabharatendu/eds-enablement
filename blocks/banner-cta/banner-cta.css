@@ -1,75 +1,75 @@
 /*
- * Banner CTA block (banner variant)
+ * Banner CTA block (banner-cta variant)
  *
- * Full-bleed closing call-to-action: a background photo with a dark overlay and
- * centered foreground content (heading, paragraph, button). Derived from the
- * banner block, defaulting to a dark scheme for legibility over imagery.
+ * Full-bleed closing call-to-action: a solid black band with left-aligned
+ * white content (large uppercase heading, body paragraph, white pill button)
+ * and generous vertical padding. Values extracted from the source computed
+ * styles on https://wknd-trendsetters.site/about-us.
  */
 
+/* full-bleed: let the black band span the viewport width */
+.banner-cta-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
 .banner-cta {
-  --banner-cta-bg: #12484e;
-  --banner-cta-fg: #fff;
-
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 320px;
-  padding: 40px 24px;
-  background-color: var(--banner-cta-bg);
-  color: var(--banner-cta-fg);
-  overflow: hidden;
-  isolation: isolate;
+  background-color: var(--dark-color);
+  color: var(--background-color);
+  padding: 64px 0;
 }
 
-/* background image layer */
-.banner-cta .banner-cta-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-}
-
-.banner-cta .banner-cta-bg picture,
-.banner-cta .banner-cta-bg img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* dark overlay so foreground content stays legible */
-.banner-cta .banner-cta-bg img {
-  opacity: 0.55;
-}
-
-/* foreground content */
+/* content is centered in the 1200px grid, but the copy column stays left-aligned */
 .banner-cta .banner-cta-content {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  text-align: center;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: left;
 }
 
-.banner-cta .banner-cta-content :is(h1, h2, h3, h4, h5, h6) {
+.banner-cta .banner-cta-content > * {
+  max-width: 672px;
+}
+
+.banner-cta .banner-cta-content h1,
+.banner-cta .banner-cta-content h2,
+.banner-cta .banner-cta-content h3 {
   margin: 0;
+  font-size: var(--heading-font-size-xxl);
   color: inherit;
 }
 
 .banner-cta .banner-cta-content p {
-  margin: 12px 0 0;
+  margin: 16px 0 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
   color: inherit;
 }
 
-/* tablet + desktop */
-@media (width >= 600px) {
-  .banner-cta {
-    min-height: 400px;
-    padding: 56px 32px;
-  }
+/* CTA: white pill with black label on the dark band */
+.banner-cta .banner-cta-content .button-container {
+  margin: 32px 0 0;
+}
+
+.banner-cta .banner-cta-content a.button:any-link {
+  border-color: var(--background-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.banner-cta .banner-cta-content a.button:hover,
+.banner-cta .banner-cta-content a.button:focus-visible {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 @media (width >= 900px) {
   .banner-cta {
-    min-height: 480px;
-    padding: 64px 32px;
+    padding: 128px 0;
+  }
+
+  .banner-cta .banner-cta-content {
+    padding: 0 32px;
   }
 }

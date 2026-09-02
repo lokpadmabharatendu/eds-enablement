@@ -2,28 +2,31 @@
 /* global WebImporter */
 
 /**
- * Transformer: wknd-trendsetters section breaks and section metadata.
- * Section selectors come from page-templates.json (DOM-verified boundaries).
+ * Transformer: WKND Trendsetters section breaks + section metadata.
+ * Maps source section wrappers to EDS sections:
+ *   secondary-section -> grey (light), inverse-section -> dark.
+ * Section boundaries + styles come from payload.template.sections
+ * (page-templates.json), which are DOM-verified against cleaned.html.
  *
  * Breaks are inserted in beforeTransform (while every section element still
- * exists, before parsers replace them). Section Metadata blocks are inserted in
- * afterTransform, anchored to the marker <hr> (or the surviving element for the
- * first section).
- *
- * about-us template: 7 sections; styled = sec-0, sec-2, sec-4 (all "secondary").
+ * exists, before parsers replace them). Section Metadata is inserted in
+ * afterTransform, anchored to a marker <hr> (or the surviving original
+ * element for the first section). Sections are processed in reverse so
+ * inserts never disturb not-yet-processed selectors.
  */
 const SECTION_MARKER_ATTR = 'data-excat-section-id';
 
 export default function transform(hookName, element, payload) {
-  const sections = payload.template.sections || [];
+  const sections = (payload.template && payload.template.sections) || [];
 
   if (hookName === 'beforeTransform') {
-    // Insert breaks now, before parsers can replace any section element.
     for (let i = sections.length - 1; i >= 0; i -= 1) {
       const section = sections[i];
-      if (i === 0 && !section.style) continue; // first section: no break, no metadata needed
+      // First section with no style: no leading break and no metadata needed.
+      if (i === 0 && !section.style) continue;
+
       const sectionEl = element.querySelector(section.selector);
-      if (!sectionEl) continue; // selector didn't match on this page — skip, never guess a replacement
+      if (!sectionEl) continue; // selector didn't match on this page — skip, never guess
 
       const hr = document.createElement('hr');
       if (section.style) hr.setAttribute(SECTION_MARKER_ATTR, section.id);
@@ -32,17 +35,13 @@ export default function transform(hookName, element, payload) {
   }
 
   if (hookName === 'afterTransform') {
-    // Parsers have now run and may have replaced section elements. Anchor each
-    // styled section's Section Metadata block to whichever still exists: the
-    // marker <hr> placed above, or (first section, no marker inserted) the
-    // original element itself.
     for (let i = sections.length - 1; i >= 0; i -= 1) {
       const section = sections[i];
       if (!section.style) continue;
 
       const marker = element.querySelector(`[${SECTION_MARKER_ATTR}="${section.id}"]`);
       const anchor = marker || element.querySelector(section.selector);
-      if (!anchor) continue; // neither survived — selector didn't match post-parse; skip, never guess
+      if (!anchor) continue; // neither survived — skip, never guess
 
       const metadataBlock = WebImporter.Blocks.createBlock(document, {
         name: 'Section Metadata',
@@ -52,7 +51,7 @@ export default function transform(hookName, element, payload) {
 
       if (marker) {
         marker.removeAttribute(SECTION_MARKER_ATTR);
-        if (i === 0) marker.remove(); // section 0 never gets a real leading break
+        if (i === 0) marker.remove(); // first section never gets a real leading break
       }
     }
   }
