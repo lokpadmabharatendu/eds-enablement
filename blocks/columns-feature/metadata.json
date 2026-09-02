@@ -1,0 +1,40 @@
+{
+  "variantName": "columns-feature",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-09-02T12:16:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://wknd-trendsetters.site/fashion-trends-young-adults-casual-sport",
+    "originPage": "trends-showcase image + text feature section",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "media-feature",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image | heading + lead paragraph + 1 CTA button",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "mid-page image + text feature sections with a single lead image and a CTA button",
+      "two-column promo blocks with heading, body copy, and a call-to-action"
+    ],
+    "notSuitableFor": [
+      "article intros with byline/date meta and no CTA (use columns-article)",
+      "full-bleed hero intros with an image cluster (use columns-intro)",
+      "image galleries"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/fashion-trends-young-adults-casual-sport"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-02T12:16:00.000Z"
+  }
+}

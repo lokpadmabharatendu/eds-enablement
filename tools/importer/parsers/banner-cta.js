@@ -1,38 +1,41 @@
 /* eslint-disable */
 /* global WebImporter */
 /**
- * Parser for banner-cta. Base: banner (custom — no library convention available).
- * Source: https://wknd-trendsetters.site/about-us
- * Generated: 2026-09-01
+ * Parser for banner-cta. Base: banner (custom variant — inferred from source HTML,
+ * base "banner" not present in the block library catalog).
+ * Source: https://wknd-trendsetters.site/ (CTA banner)
+ * Generated: 2026-09-02
  *
- * Structure inferred from source HTML: a single-column banner (grid-layout
- * desktop-1-column). One image acts as the background/overlay, with a text overlay
- * containing a heading, subheading, and a CTA button. Modeled as a 1-column block:
- *   Row: background image
- *   Row: content cell (heading, subheading, CTA)
+ * Source structure: a grid-layout with a relative-positioned card containing a
+ * full-bleed cover image overlay and a card-body with an h2 heading, a subheading
+ * paragraph, and a button-group CTA.
+ * Output: 1 column, two rows (matches the banner-cta decorator's expected structure) —
+ *   row 1 = decorative image cell
+ *   row 2 = content cell: heading + paragraph + CTA link.
  */
 export default function parse(element, { document }) {
-  const bgImage = element.querySelector('img');
-  const heading = element.querySelector('h1, h2, h3, [class*="heading"]');
-  const subheading = element.querySelector('p, .subheading');
-  const buttons = Array.from(element.querySelectorAll('a.button, .button-group a'));
+  const image = element.querySelector('img, picture');
 
-  if (!heading && !subheading && !buttons.length && !bgImage) {
+  const heading = element.querySelector('h1, h2, h3, .h1-heading, [class*="heading"]');
+  const description = element.querySelector('.subheading, p');
+  const ctaLinks = Array.from(element.querySelectorAll('.button-group a, a.button'));
+
+  const contentCell = [];
+  if (heading) contentCell.push(heading);
+  if (description) contentCell.push(description);
+  contentCell.push(...ctaLinks);
+
+  // Empty-block guard.
+  if (!image && !contentCell.length) {
     element.replaceWith(...element.childNodes);
     return;
   }
 
   const cells = [];
-
-  // Row 1: background image (optional)
-  if (bgImage) cells.push([bgImage]);
-
-  // Row 2: overlay content (single cell holding all text + CTA)
-  const contentCell = [];
-  if (heading) contentCell.push(heading);
-  if (subheading) contentCell.push(subheading);
-  contentCell.push(...buttons);
-  if (contentCell.length) cells.push([contentCell]);
+  // Row 1: decorative image (single cell). Only add if present.
+  if (image) cells.push([image]);
+  // Row 2: content (single cell holding heading, paragraph, CTA).
+  cells.push([contentCell]);
 
   const block = WebImporter.Blocks.createBlock(document, { name: 'banner-cta', cells });
   element.replaceWith(block);

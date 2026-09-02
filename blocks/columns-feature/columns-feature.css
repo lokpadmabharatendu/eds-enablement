@@ -1,0 +1,58 @@
+/* columns-feature -- image column + text column (heading, lead paragraph, CTA button) */
+
+/* Values extracted from https://wknd-trendsetters.site/fashion-trends-young-adults-casual-sport */
+
+.columns-feature > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* image column ordering (image first on mobile) */
+.columns-feature > div > div {
+  order: 1;
+}
+
+.columns-feature > div > .columns-feature-img-col {
+  order: 0;
+}
+
+.columns-feature img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* heading */
+.columns-feature h2 {
+  margin: 0;
+  font-size: var(--heading-font-size-xl);
+  line-height: 1.1;
+  letter-spacing: normal;
+}
+
+/* lead paragraph */
+.columns-feature > div > div > p {
+  margin: 16px 0 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
+}
+
+/* CTA button group spacing (buttons inherit global a.button styling) */
+.columns-feature .button-group {
+  margin-top: 24px;
+}
+
+@media (width >= 900px) {
+  .columns-feature > div {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .columns-feature > div > div {
+    flex: 1;
+    order: unset;
+  }
+}
