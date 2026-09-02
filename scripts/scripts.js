@@ -10,6 +10,9 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  readBlockConfig,
+  toClassName,
+  toCamelCase,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -143,6 +146,33 @@ function decorateButtons(main) {
 }
 
 /**
+ * Applies Section Metadata to its section as classes/data and removes the block.
+ * The project's aem.js decorateSections does not process section-metadata, so
+ * without this the metadata renders as a stray "section-metadata" block (404 on
+ * load, visible key/value text) and section style variants never apply.
+ * @param {Element} main The main element
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll(':scope > .section > div > div.section-metadata').forEach((meta) => {
+    const section = meta.closest('.section');
+    const wrapper = meta.parentElement;
+    const config = readBlockConfig(meta);
+    Object.keys(config).forEach((key) => {
+      const value = config[key];
+      if (key === 'style') {
+        value.split(',').map((s) => toClassName(s.trim())).filter(Boolean)
+          .forEach((s) => section.classList.add(s));
+      } else {
+        section.dataset[toCamelCase(key)] = value;
+      }
+    });
+    // remove the metadata block and its now-empty wrapper
+    meta.remove();
+    if (wrapper && wrapper.children.length === 0) wrapper.remove();
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -151,8 +181,25 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
   decorateBlocks(main);
   decorateButtons(main);
+}
+
+/**
+ * Renders the 404 error page fragment into main.
+ * @param {Element} main The main element
+ */
+function loadErrorPage(main) {
+  if (window.errorCode === '404') {
+    const fragmentPath = '/fragments/404';
+    const fragmentLink = document.createElement('a');
+    fragmentLink.href = fragmentPath;
+    fragmentLink.textContent = fragmentPath;
+    const fragment = buildBlock('fragment', [[fragmentLink]]);
+    const section = main.querySelector('.section');
+    if (section) section.replaceChildren(fragment);
+  }
 }
 
 /**
@@ -214,18 +261,5 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
-
-function loadErrorPage(main) {
-  if (window.errorCode === '404') {
-    const fragmentPath = '/fragments/404';
-    const fragmentLink = document.createElement('a');
-    fragmentLink.href = fragmentPath;
-    fragmentLink.textContent = fragmentPath;
-    const fragment = buildBlock('fragment', [[fragmentLink]]);
-    const section = main.querySelector('.section');
-    if (section) section.replaceChildren(fragment);
-  }
-}
-
 
 loadPage();
