@@ -1,33 +1,86 @@
-.columns-intro > div {
+/* columns-intro -- hero-style intro: text column + 3-image cluster on a light band */
+
+/* full-bleed light background band (source: rgb(245,245,245) = --light-color, 128px vertical) */
+.columns-intro-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.columns-intro.block {
+  background-color: var(--light-color);
+  padding: 64px 0;
+}
+
+/* inner row constrained + centered */
+.columns-intro.block > div {
   display: flex;
   flex-direction: column;
+  gap: 40px;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-.columns-intro img {
-  width: 100%;
+/* content column */
+.columns-intro .columns-intro-content h1 {
+  margin: 0;
 }
 
-.columns-intro > div > div {
-  order: 1;
+.columns-intro .columns-intro-content p {
+  margin: 24px 0 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
 }
 
-.columns-intro > div > .columns-intro-img-col {
-  order: 0;
+/* CTA pill group (buttons inherit global a.button.primary / .secondary styling) */
+.columns-intro .columns-intro-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
 }
 
-.columns-intro > div > .columns-intro-img-col img {
+.columns-intro .columns-intro-buttons a.button {
+  margin: 0;
+}
+
+/* image cluster */
+.columns-intro .columns-intro-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.columns-intro .columns-intro-images p {
+  margin: 0;
+}
+
+.columns-intro .columns-intro-images picture {
   display: block;
 }
 
+.columns-intro .columns-intro-images img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
 @media (width >= 900px) {
-  .columns-intro > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+  .columns-intro.block {
+    padding: 128px 0;
   }
 
-  .columns-intro > div > div {
+  .columns-intro.block > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 64px;
+    padding: 0 32px;
+  }
+
+  .columns-intro .columns-intro-content,
+  .columns-intro .columns-intro-images {
     flex: 1;
-    order: unset;
   }
 }

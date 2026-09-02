@@ -1,26 +1,114 @@
+/* cards-article — "Latest articles" grid of article cards */
+
+/* Values extracted from https://wknd-trendsetters.site/about-us */
+
 .cards-article > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
+/* card = whole list item */
 .cards-article > ul > li {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(232 232 232);
+  border-radius: 20px;
+  overflow: hidden;
   background-color: var(--background-color);
 }
 
-.cards-article .cards-article-card-body {
-  margin: 16px 0 0;
-}
-
+/* image */
 .cards-article .cards-article-card-image {
   line-height: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
 
-.cards-article > ul > li img {
+.cards-article .cards-article-card-image picture,
+.cards-article .cards-article-card-image img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+}
+
+.cards-article .cards-article-card-image img {
   object-fit: cover;
+}
+
+/* body */
+.cards-article .cards-article-card-body {
+  margin: 0;
+  padding: 24px;
+}
+
+/* meta row: category pill + date */
+.cards-article .cards-article-card-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 12px;
+}
+
+/* category pill (accent yellow) */
+.cards-article .cards-article-tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-family: var(--body-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 19.2px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* date */
+.cards-article .cards-article-date {
+  color: var(--link-hover-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.4px;
+}
+
+/* article title */
+.cards-article .cards-article-card-body h3 {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 19.8px;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.cards-article .cards-article-card-body h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cards-article .cards-article-card-body h3 a:hover {
+  color: var(--link-hover-color);
+  text-decoration: none;
+}
+
+@media (width >= 600px) {
+  .cards-article > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-article > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

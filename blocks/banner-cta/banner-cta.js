@@ -1,39 +1,40 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
 /**
  * Loads and decorates the banner-cta block.
  *
- * Expected authored structure (single row, two cells):
- *   | image | title |
+ * Authored structure (from .plain.html) is two rows, each a single cell:
+ *   row 1: | decorative image |
+ *   row 2: | heading + paragraph + CTA |
  *
- * The title cell may contain a heading, paragraph, and one or more buttons.
- * The image becomes a full-bleed background layer with a dark overlay so the
- * foreground content stays legible.
+ * The source design renders as a plain full-bleed black section with
+ * left-aligned white content — the image is not shown — so we drop the
+ * decorative image and keep only the text/CTA content.
  *
  * @param {Element} block The banner-cta block element
  */
 export default function decorate(block) {
-  const firstRow = block.firstElementChild;
-  if (!firstRow) return;
+  // Find the cell that holds the actual copy (heading / paragraph / link).
+  let contentCell = null;
+  [...block.children].forEach((row) => {
+    const cell = row.querySelector(':scope > div') || row;
+    if (cell.querySelector('h1, h2, h3, h4, h5, h6, p, a')) {
+      contentCell = cell;
+    }
+  });
 
-  const [imageCell, titleCell] = firstRow.children;
-
-  // Background image layer
-  const bg = document.createElement('div');
-  bg.className = 'banner-cta-bg';
-  const img = imageCell?.querySelector('img');
-  if (img) {
-    bg.append(
-      createOptimizedPicture(img.src, img.alt || '', false, [{ width: '1600' }]),
-    );
-  }
-
-  // Foreground content layer — preserve author's heading level and any inline markup
   const content = document.createElement('div');
   content.className = 'banner-cta-content';
-  if (titleCell) {
-    while (titleCell.firstChild) content.append(titleCell.firstChild);
+  if (contentCell) {
+    while (contentCell.firstChild) content.append(contentCell.firstChild);
   }
 
-  block.replaceChildren(bg, content);
+  // The source CTA renders as a pill button. The project's global button
+  // decoration only fires for links wrapped in <strong>/<em>, so promote the
+  // plain CTA link here.
+  const cta = content.querySelector('p > a[href]');
+  if (cta && cta.parentElement.textContent.trim() === cta.textContent.trim()) {
+    cta.classList.add('button');
+    cta.parentElement.classList.add('button-container');
+  }
+
+  block.replaceChildren(content);
 }

@@ -30,8 +30,13 @@
     ]
   },
   "usage": {
-    "pagesUsing": ["/about-us"],
-    "reuseCount": 1,
-    "lastUsed": "2026-09-01T00:00:00.000Z"
+    "pagesUsing": [
+      "/about-us",
+      "/index",
+      "/blog",
+      "/blog/ace-pro-court-polo"
+    ],
+    "reuseCount": 4,
+    "lastUsed": "2026-09-02T12:00:00Z"
   }
 }

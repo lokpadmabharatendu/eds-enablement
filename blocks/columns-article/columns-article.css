@@ -1,12 +1,14 @@
+/* columns-article -- featured article: image column + text column (breadcrumb, h2, author meta) */
+
+/* Values extracted from https://wknd-trendsetters.site/about-us (main > *:nth-child(2)) */
+
 .columns-article > div {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
-.columns-article img {
-  width: 100%;
-}
-
+/* image column */
 .columns-article > div > div {
   order: 1;
 }
@@ -15,15 +17,38 @@
   order: 0;
 }
 
-.columns-article > div > .columns-article-img-col img {
+.columns-article img {
   display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* heading */
+.columns-article h2 {
+  margin: 0;
+  font-size: var(--heading-font-size-xl);
+  line-height: 1.1;
+  letter-spacing: normal;
+}
+
+/* author meta */
+.columns-article > div > div > p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.columns-article > div > div > h2 + p {
+  margin-top: 16px;
 }
 
 @media (width >= 900px) {
   .columns-article > div {
+    flex-direction: row;
     align-items: center;
-    flex-direction: unset;
-    gap: 24px;
   }
 
   .columns-article > div > div {
