@@ -24,15 +24,18 @@ function closeAllDropdowns(nav) {
 /**
  * Build a top-level nav item from a source <li>.
  * A dropdown/megamenu item has a leading <p> label followed by a nested <ul>.
- * A plain item is a single <a>.
+ * A plain item is a single <a> (which Document Authoring may wrap in a <p>).
  */
 function buildNavItem(li) {
   const item = document.createElement('li');
   item.className = 'nav-item';
 
-  const directLink = li.querySelector(':scope > a');
   const submenu = li.querySelector(':scope > ul');
-  const labelP = li.querySelector(':scope > p');
+  // A plain link: direct <a>, or DA-wrapped <p><a> (with no submenu).
+  const directLink = li.querySelector(':scope > a') || (!submenu ? li.querySelector(':scope > p > a') : null);
+  // The dropdown/megamenu label is a leading <p> whose text is NOT itself the
+  // direct link (so a <p><a> plain link is not mistaken for a dropdown label).
+  const labelP = [...li.querySelectorAll(':scope > p')].find((p) => !p.querySelector('a'));
 
   if (submenu && labelP) {
     // Dropdown / megamenu trigger
