@@ -9,7 +9,9 @@ header .nav-wrapper {
   background-color: var(--background-color, #fff);
   width: 100%;
   z-index: 20;
-  position: relative;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgb(232 232 232);
 }
 
 header nav {
@@ -101,7 +103,7 @@ header nav .nav-logo {
   color: var(--text-color, #000);
   font-family: var(--heading-font-family);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: -0.02em;
 }
@@ -385,6 +387,7 @@ header nav .nav-cta:hover {
     width: auto;
     padding: 8px 14px;
     font-size: 15px;
+    font-weight: 400;
   }
 
   /* desktop floating panels — hidden panels are display:none so they
