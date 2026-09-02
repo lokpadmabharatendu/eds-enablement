@@ -22,8 +22,7 @@
 .employee-list .employee-list-item {
   display: grid;
   grid-template-columns: max-content 1fr;
-  column-gap: 12px;
-  row-gap: 4px;
+  gap: 4px 12px;
   padding: 16px;
   border: 1px solid var(--dark-color, #ccc);
   border-radius: 8px;
@@ -70,7 +69,7 @@
 }
 
 /* Tablet and up: table-like grid rows */
-@media (min-width: 600px) {
+@media (width >= 600px) {
   .employee-list .employee-list-header,
   .employee-list .employee-list-item {
     display: grid;

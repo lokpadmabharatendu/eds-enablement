@@ -17,14 +17,18 @@ export default function parse(element, { document }) {
   // Fallback: if no wrapper grid found, use direct children of element.
   if (!cols.length) cols = Array.from(element.querySelectorAll(':scope > div'));
 
-  // Content column: heading + paragraph + CTA links (flattened, buttons out of the group wrapper).
+  // Content column: the column that holds the heading (falls back to the whole block).
   const heading = element.querySelector('h1, h2, .h1-heading, [class*="heading"]');
-  const description = element.querySelector('.subheading, p');
+  const contentScope = (heading && cols.find((c) => c.contains(heading))) || element;
+
+  // Description: ALL paragraphs in the content column (some heroes have a
+  // subheading plus a lead paragraph — capture every one, not just the first).
+  const descriptions = Array.from(contentScope.querySelectorAll('.subheading, p'));
   const ctaLinks = Array.from(element.querySelectorAll('.button-group a, a.button'));
 
   const contentCell = [];
   if (heading) contentCell.push(heading);
-  if (description) contentCell.push(description);
+  contentCell.push(...descriptions);
   contentCell.push(...ctaLinks);
 
   // Image column: every image in the block that is not part of the content column.

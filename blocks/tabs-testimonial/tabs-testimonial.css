@@ -21,6 +21,8 @@
 
 .tabs-testimonial .tabs-testimonial-media {
   margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .tabs-testimonial .tabs-testimonial-media picture {
@@ -55,14 +57,14 @@
 
 .tabs-testimonial .tabs-testimonial-role {
   font-family: var(--body-font-family);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 32px;
+  line-height: 25.6px;
   color: var(--text-color);
 }
 
 .tabs-testimonial .tabs-testimonial-quote {
-  margin: 24px 0 0;
+  margin: 32px 0 0;
   font-family: var(--body-font-family);
   font-size: 20px;
   font-weight: 400;
@@ -79,23 +81,30 @@
   padding: 0;
 }
 
+/* default = inactive tab */
 .tabs-testimonial .tabs-testimonial-tab {
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 0;
   padding: 16px;
-  border: 1px solid var(--text-color);
+  border: 1px solid #e8e8e8;
   border-radius: 16px;
-  background-color: var(--light-color);
+  background-color: #efefef;
   font-family: var(--body-font-family);
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .tabs-testimonial .tabs-testimonial-tab:hover {
-  background-color: #ececec;
+  border-color: var(--text-color);
+}
+
+/* selected tab */
+.tabs-testimonial .tabs-testimonial-tab[aria-selected='true'] {
+  border-color: var(--text-color);
+  background-color: var(--light-color);
 }
 
 .tabs-testimonial .tabs-testimonial-avatar {
@@ -103,6 +112,7 @@
   display: block;
   width: 48px;
   height: 48px;
+  border-radius: 9999px;
   overflow: hidden;
 }
 
@@ -138,7 +148,7 @@
   }
 
   .tabs-testimonial .tabs-testimonial-quote {
-    margin: 24px 0 48px;
+    margin: 32px 0 48px;
   }
 
   .tabs-testimonial .tabs-testimonial-list {

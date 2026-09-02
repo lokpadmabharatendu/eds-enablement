@@ -11,7 +11,7 @@
         "https://wknd-trendsetters.site/fashion-trends-young-adults"
       ],
       "coverageGaps": [],
-      "description": "Landing page with hero and image cluster, section heading with gallery grid, author/testimonial cards, article card row, FAQ accordion, and CTA banner",
+      "description": "Hero banner followed by stacked text-and-image feature sections and a closing call-to-action",
       "blocks": [
         {
           "name": "columns-intro",
@@ -137,7 +137,7 @@
         "https://wknd-trendsetters.site/fashion-insights"
       ],
       "coverageGaps": [],
-      "description": "Listing page with hero heading and image, one featured article block, a grid of article cards, and a CTA banner",
+      "description": "Hero intro with mixed content sections, image gallery and optional tabbed group leading to a CTA",
       "blocks": [
         {
           "name": "columns-intro",
@@ -218,7 +218,7 @@
         "https://wknd-trendsetters.site/blog/street-style-trends"
       ],
       "coverageGaps": [],
-      "description": "Article detail page with hero image and title/meta header followed by long-form body of headings, lists, tables, images, and quotes",
+      "description": "Article layout with a heading-and-image hero followed by a sequence of full-width images and body copy",
       "blocks": [
         {
           "name": "columns-article",
@@ -256,7 +256,7 @@
         "https://wknd-trendsetters.site/faq"
       ],
       "coverageGaps": [],
-      "description": "FAQ page with hero heading and image, accordion of question rows, contact detail columns, and CTA banner",
+      "description": "Hero intro followed by an accordion of questions, a supporting cards group and a closing CTA",
       "blocks": [
         {
           "name": "columns-intro",
@@ -324,7 +324,7 @@
         "https://wknd-trendsetters.site/fashion-trends-young-adults-casual-sport"
       ],
       "coverageGaps": [],
-      "description": "Showcase page with hero heading and image pair, a multi-column grid of tagged trend cards, an image-plus-text feature section, and a CTA banner",
+      "description": "Hero banner followed by a large repeating grid of cards and closing call-to-action sections",
       "blocks": [
         {
           "name": "columns-intro",

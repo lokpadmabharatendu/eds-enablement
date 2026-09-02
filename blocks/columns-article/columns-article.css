@@ -1,22 +1,25 @@
-/* columns-article -- featured article: image column + text column (breadcrumb, h2, author meta) */
+/* columns-article -- featured article: image column + text column */
 
-/* Values extracted from https://wknd-trendsetters.site/about-us (main > *:nth-child(2)) */
+/* Values extracted from https://wknd-trendsetters.site/ (#main-content > section.section:nth-of-type(1)) */
 
+/* Row: mobile-first single column, becomes 2-column grid on desktop */
 .columns-article > div {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* image column */
+/* text column */
 .columns-article > div > div {
   order: 1;
 }
 
+/* image column appears first on mobile */
 .columns-article > div > .columns-article-img-col {
   order: 0;
 }
 
+/* image */
 .columns-article img {
   display: block;
   width: 100%;
@@ -25,34 +28,46 @@
   border-radius: 20px;
 }
 
-/* heading */
-.columns-article h2 {
+/* heading (block content is h3; source styles it like the h2-heading) */
+.columns-article h3 {
   margin: 0;
-  font-size: var(--heading-font-size-xl);
+  font-family: var(--heading-font-family);
+  font-size: 32px;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: normal;
+  text-transform: uppercase;
+  color: var(--text-color);
 }
 
-/* author meta */
+/* body copy */
 .columns-article > div > div > p {
-  margin: 0;
-  font-size: var(--body-font-size-s);
+  margin: 16px 0 0;
+  font-size: var(--body-font-size-m);
   font-weight: 400;
   line-height: 1.6;
+  color: var(--text-color);
 }
 
-.columns-article > div > div > h2 + p {
-  margin-top: 16px;
+/* link */
+.columns-article > div > div > p a {
+  color: var(--link-color);
 }
 
 @media (width >= 900px) {
   .columns-article > div {
     flex-direction: row;
     align-items: center;
+    gap: 24px;
   }
 
   .columns-article > div > div {
-    flex: 1;
+    flex: 1 1 0;
     order: unset;
+  }
+
+  .columns-article h3 {
+    font-size: 40px;
+    line-height: 44px;
   }
 }

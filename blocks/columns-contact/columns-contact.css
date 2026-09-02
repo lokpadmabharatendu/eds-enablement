@@ -1,24 +1,20 @@
-/* columns-contact -- "Let's connect" style: text column + labeled contact details column on a light band */
+/* columns-contact -- "Let's connect": intro column + labeled contact details column */
 
-/* full-bleed light background band (source: secondary-section grey) */
-.columns-contact-wrapper {
-  max-width: 100% !important;
-  padding: 0 !important;
+/*
+ * The section is authored as "secondary", so styles.css already paints the grey
+ * band and the .section > div wrapper constrains content to 1200px. We only bump
+ * the vertical padding from the default 96px to the source's 128px and lay out
+ * the two columns; no redundant background or full-bleed override needed.
+ */
+main .section.columns-contact-container {
+  padding: 128px 0;
 }
 
-.columns-contact.block {
-  background-color: var(--light-color);
-  padding: 64px 0;
-}
-
-/* inner row constrained + centered */
+/* row: stacked on mobile */
 .columns-contact.block > div {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: 0 24px;
+  gap: 48px;
 }
 
 /* content column */
@@ -27,9 +23,10 @@
 }
 
 .columns-contact .columns-contact-content p {
-  margin: 24px 0 0;
+  margin: 16px 0 0;
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  color: rgb(64 64 64);
 }
 
 /* contact details column */
@@ -42,39 +39,35 @@
 .columns-contact .columns-contact-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
-.columns-contact .columns-contact-item h1,
-.columns-contact .columns-contact-item h2,
-.columns-contact .columns-contact-item h3,
-.columns-contact .columns-contact-item h4,
-.columns-contact .columns-contact-item h5,
-.columns-contact .columns-contact-item h6 {
+/* label heading */
+.columns-contact .columns-contact-item h3 {
   margin: 0;
-  font-size: var(--body-font-size-s);
-  text-transform: uppercase;
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: 0.05em;
-  color: var(--text-color-secondary, #666);
+  text-transform: uppercase;
+  color: var(--link-hover-color);
 }
 
+/* value (link or plain text) */
 .columns-contact .columns-contact-item p,
 .columns-contact .columns-contact-item a {
   margin: 0;
   font-size: var(--body-font-size-m);
   line-height: 1.4;
+  color: var(--text-color);
 }
 
 @media (width >= 900px) {
-  .columns-contact.block {
-    padding: 128px 0;
-  }
-
   .columns-contact.block > div {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: start;
     gap: 64px;
-    padding: 0 32px;
   }
 
   .columns-contact .columns-contact-content,

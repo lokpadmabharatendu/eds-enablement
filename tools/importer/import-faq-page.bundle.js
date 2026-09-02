@@ -47,11 +47,12 @@ var CustomImportScript = (() => {
     let cols = Array.from(grid.querySelectorAll(":scope > div"));
     if (!cols.length) cols = Array.from(element.querySelectorAll(":scope > div"));
     const heading = element.querySelector('h1, h2, .h1-heading, [class*="heading"]');
-    const description = element.querySelector(".subheading, p");
+    const contentScope = heading && cols.find((c) => c.contains(heading)) || element;
+    const descriptions = Array.from(contentScope.querySelectorAll(".subheading, p"));
     const ctaLinks = Array.from(element.querySelectorAll(".button-group a, a.button"));
     const contentCell = [];
     if (heading) contentCell.push(heading);
-    if (description) contentCell.push(description);
+    contentCell.push(...descriptions);
     contentCell.push(...ctaLinks);
     const images = Array.from(element.querySelectorAll("img"));
     const imageCell = images.length ? images : [];

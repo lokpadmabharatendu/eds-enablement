@@ -48,12 +48,13 @@
   color: inherit;
 }
 
-/* +/- toggle indicator (20x20 in source) */
+/* + toggle indicator (20x20 in source, rotates to x when open) */
 .accordion-faq .accordion-faq-toggle {
   position: relative;
   flex: 0 0 auto;
   width: 20px;
   height: 20px;
+  transition: transform 0.2s ease;
 }
 
 .accordion-faq .accordion-faq-toggle::before,
@@ -63,26 +64,25 @@
   top: 50%;
   left: 50%;
   background-color: var(--text-color);
-  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* horizontal bar (always visible) */
+/* horizontal bar */
 .accordion-faq .accordion-faq-toggle::before {
-  width: 16px;
+  width: 14px;
   height: 2px;
   transform: translate(-50%, -50%);
 }
 
-/* vertical bar (hidden when open -> becomes minus) */
+/* vertical bar */
 .accordion-faq .accordion-faq-toggle::after {
   width: 2px;
-  height: 16px;
+  height: 14px;
   transform: translate(-50%, -50%);
 }
 
-.accordion-faq .accordion-faq-item[open] .accordion-faq-toggle::after {
-  opacity: 0;
-  transform: translate(-50%, -50%) rotate(90deg);
+/* open state: rotate the plus 45deg to form an x (matches source) */
+.accordion-faq .accordion-faq-item[open] .accordion-faq-toggle {
+  transform: rotate(45deg);
 }
 
 /* answer body */
