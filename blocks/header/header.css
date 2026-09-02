@@ -421,6 +421,18 @@ header nav .nav-cta:hover {
     align-items: start;
   }
 
+  /* transparent bridge spanning the gap between the trigger row and the
+     floating panel so the mouse can travel down without leaving the item
+     (which would trigger mouseleave and close the megamenu) */
+  header nav .nav-item.has-megamenu .nav-panel::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -28px;
+    height: 28px;
+  }
+
   header nav .nav-item.has-megamenu[aria-expanded='true'] .nav-panel {
     display: grid;
   }
